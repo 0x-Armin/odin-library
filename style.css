@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'ibm_plex_monoregular';
-  src: url('ibmplexmono-regular-webfont.woff2') format('woff2'),
-       url('ibmplexmono-regular-webfont.woff') format('woff');
+  src: url('fonts/ibmplexmono-regular-webfont.woff2') format('woff2'),
+       url('fonts/ibmplexmono-regular-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -9,11 +9,6 @@
 * {
   margin: 0;
   padding: 0;
-}
-
-.header h1 {
-  font-family: "ibm_plex_monoregular", Arial, Helvetica, sans-serif;
-  margin: 12px;
 }
 
 .container {
@@ -25,4 +20,27 @@
 
   display: grid;
   grid-template-rows: 1fr 1fr minmax(85%, auto);
+}
+
+.header h1 {
+  font-family: 'ibm_plex_monoregular', Arial, Helvetica, sans-serif;
+  margin: 12px;
+}
+
+.display {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.book-card {
+  height: 300px;
+  background-color: #8d99ae;
+
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
