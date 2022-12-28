@@ -49,3 +49,12 @@ const loopArrDisplayBook = () => {
 addBooktoLibrary("Lord of the Rings", "J.R.R Tolkkien", "340", true);
 addBooktoLibrary("Attack on Titan", 'Hajime Isayama', '162', false);
 loopArrDisplayBook();
+
+// Show/hide pop-up form to add book
+function openForm() {
+  document.getElementById('addBookForm').style.display = 'block';
+}
+
+function closeForm() {
+  document.getElementById('addBookForm').style.display = 'none';
+}
