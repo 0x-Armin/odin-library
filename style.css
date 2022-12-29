@@ -61,7 +61,7 @@
 }
 
 .book-card {
-  height: 180px;
+  height: 220px;
   background-color: #8d99ae;
 
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
@@ -122,8 +122,12 @@
   font-size: 0.9rem;
 }
 
-/* Remove book from library */
-.remove-book-btn {
+/* 
+Remove book from library,
+change read status
+*/
+.remove-book-btn,
+.change-read-btn {
   display: flex;
   justify-content: center;
   align-items: center;

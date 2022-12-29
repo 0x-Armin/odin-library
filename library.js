@@ -20,6 +20,16 @@ function addBooktoLibrary(title, author, pages, read) {
 }
 
 const display = document.querySelector('.display');
+
+// Set buttons to be listening
+const setBtnsListen = () => {
+  const removeBookBtns = document.querySelectorAll('.remove-book-btn');
+  removeBookBtns.forEach(btn => btn.addEventListener('click', deleteBook));
+
+  const changeReadBtns = document.querySelectorAll('.change-read-btn');
+  changeReadBtns.forEach(btn => btn.addEventListener('click', toggleReadStatus));
+}
+
 const loopArrDisplayBook = () => {
   // remove existing display
   var displayedBooks = display.getElementsByClassName('book-card');
@@ -49,15 +59,24 @@ const loopArrDisplayBook = () => {
     hasRead.textContent = book.read ? "Has read" : "Not fully read";
     bookCard.appendChild(hasRead);
 
+    const changeReadBtn = document.createElement('button');
+    changeReadBtn.classList.add('change-read-btn');
+    changeReadBtn.innerText = 'Change read status 🎛️';
+    changeReadBtn.setAttribute('idx', idx);
+    bookCard.appendChild(changeReadBtn);
+
     const deleteBtn = document.createElement('button');
     deleteBtn.classList.add('remove-book-btn');
     deleteBtn.innerText = 'Delete book ❌';
     deleteBtn.setAttribute('idx', idx);
-    idx += 1;
     bookCard.appendChild(deleteBtn);
 
     display.appendChild(bookCard);
+
+    idx += 1;
   })
+
+  setBtnsListen();
 }
 
 // Hardcoded to test validity of loopArrDisplayBook
@@ -91,12 +110,16 @@ addBookForm.addEventListener('submit', function(event) {
 })
 
 // Delete selected book
-const removeBookBtns = document.querySelectorAll('.remove-book-btn');
-removeBookBtns.forEach(btn => btn.addEventListener('click', deleteBook));
-
 function deleteBook() {
   const idxToBeDeleted = this.attributes.idx.value;
   myLibrary.splice(idxToBeDeleted, 1);
 
+  loopArrDisplayBook();
+}
+
+// Change read status
+function toggleReadStatus() {
+  const idxToBeToggled = this.attributes.idx.value;
+  myLibrary[idxToBeToggled].read = !myLibrary[idxToBeToggled].read;
   loopArrDisplayBook();
 }
