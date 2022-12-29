@@ -21,6 +21,13 @@ function addBooktoLibrary(title, author, pages, read) {
 
 const display = document.querySelector('.display');
 const loopArrDisplayBook = () => {
+  // remove existing display
+  var displayedBooks = display.getElementsByClassName('book-card');
+  while (displayedBooks[0]) {
+    displayedBooks[0].parentNode.removeChild(displayedBooks[0]);
+  }
+
+  // display the new books
   myLibrary.forEach(book => {
     const bookCard = document.createElement('div');
     bookCard.classList.add('book-card');
@@ -51,10 +58,26 @@ addBooktoLibrary("Attack on Titan", 'Hajime Isayama', '162', false);
 loopArrDisplayBook();
 
 // Show/hide pop-up form to add book
+const addBookFormContainer = document.getElementById('addBookForm');
 function openForm() {
-  document.getElementById('addBookForm').style.display = 'block';
+  addBookForm.style.display = 'block';
 }
 
 function closeForm() {
-  document.getElementById('addBookForm').style.display = 'none';
+  addBookForm.style.display = 'none';
 }
+
+// Grab submitted form info in JS
+addBookForm.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const inputTitle = event.currentTarget.childNodes[1].title.value;
+  const inputAuthor = event.currentTarget.childNodes[1].author.value;
+  const inputNumPages = event.currentTarget.childNodes[1].numPages.value;
+  const inputHasRead = event.currentTarget.childNodes[1].hasRead.checked;
+
+  addBooktoLibrary(inputTitle, inputAuthor, inputNumPages, inputHasRead);
+  loopArrDisplayBook();
+
+  addBookForm.children[0].reset();
+})
