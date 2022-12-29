@@ -41,7 +41,7 @@
   margin: 20px;
 }
 
-.add-new-book {
+.add-book-btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -61,7 +61,7 @@
 }
 
 .book-card {
-  height: 150px;
+  height: 180px;
   background-color: #8d99ae;
 
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
@@ -120,4 +120,16 @@
 
   font-family: inherit;
   font-size: 0.9rem;
+}
+
+/* Remove book from library */
+.remove-book-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: inherit;
+  font-size: 0.9rem;
+
+  padding: 2px;
 }

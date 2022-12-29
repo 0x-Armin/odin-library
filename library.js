@@ -28,6 +28,7 @@ const loopArrDisplayBook = () => {
   }
 
   // display the new books
+  let idx = 0;
   myLibrary.forEach(book => {
     const bookCard = document.createElement('div');
     bookCard.classList.add('book-card');
@@ -47,6 +48,13 @@ const loopArrDisplayBook = () => {
     const hasRead = document.createElement('p');
     hasRead.textContent = book.read ? "Has read" : "Not fully read";
     bookCard.appendChild(hasRead);
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.classList.add('remove-book-btn');
+    deleteBtn.innerText = 'Delete book ❌';
+    deleteBtn.setAttribute('idx', idx);
+    idx += 1;
+    bookCard.appendChild(deleteBtn);
 
     display.appendChild(bookCard);
   })
@@ -81,3 +89,14 @@ addBookForm.addEventListener('submit', function(event) {
 
   addBookForm.children[0].reset();
 })
+
+// Delete selected book
+const removeBookBtns = document.querySelectorAll('.remove-book-btn');
+removeBookBtns.forEach(btn => btn.addEventListener('click', deleteBook));
+
+function deleteBook() {
+  const idxToBeDeleted = this.attributes.idx.value;
+  myLibrary.splice(idxToBeDeleted, 1);
+
+  loopArrDisplayBook();
+}
