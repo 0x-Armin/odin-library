@@ -1,17 +1,19 @@
 let myLibrary = [];
 const display = document.querySelector(".display");
 
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
 
-  this.info = function () {
+  info() {
     return `${this.title} by ${this.author}, ${this.pages} pages, ${
       this.read ? "has read" : "not read yet"
     }`;
-  };
+  }
 }
 
 function addBooktoLibrary(title, author, pages, read) {
